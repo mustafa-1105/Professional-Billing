@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+      <script language="Javascript" type="text/javascript">
+<!--
+
+function createRequestObject() {
+    var tmpXmlHttpObject;
+    if (window.XMLHttpRequest) {
+            tmpXmlHttpObject = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        tmpXmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    return tmpXmlHttpObject;
+}
+
+var http = createRequestObject();
+
+function makeGetRequest() {
+    id=document.frm.uid.value;
+    http.open('get', 'CheckAvailable.jsp?usr_id=' + id);
+    http.onreadystatechange = processResponse;
+    http.send(null);
+}
+
+function processResponse() {
+    if(http.readyState == 4){
+        var response = http.responseText;
+        document.getElementById('status').innerHTML = response;
+    }
+}
+
+-->
+      </script>
+      
+        <link rel="stylesheet" href="billingStyles.css">
+    </head>
+    <body>
+    <center>
+        <br><br><br><br>
+        <h2 style="color: brown">Registration</h2>
+        <form name="frm" method="post" action="Register">
+            <table cellspacing="7">                
+                <tr>
+                    <td>Registration Type
+                    <td><select name="type">
+                            <option value="User">User
+                            <option value="Admin">Admin
+                        </select>
+                </tr>
+
+                <tr>
+                    <td>User ID
+                    <td><input type="text" name="uid" onblur="makeGetRequest()"> 
+                        <br>
+                        <div id="status"></div>
+                </tr>
+
+                <tr>
+                    <td>Password  
+                    <td><input type="password" name="psw">
+                </tr>
+
+                <tr>
+                    <td>Mobile 
+                    <td><input type="text" name="mob">
+                </tr>
+
+                <tr>
+                    <td>Email ID 
+                    <td><input type="text" name="email">
+                </tr>
+                
+                <tr>
+                    <td><input type="submit" value="Submit" style="background-color: burlywood"> 
+                    <td><input type="button" value="Cancel" onclick="history.back()" style="background-color: burlywood">
+                </tr>
+            </table>
+    </center>
+           </body>
+</html>
